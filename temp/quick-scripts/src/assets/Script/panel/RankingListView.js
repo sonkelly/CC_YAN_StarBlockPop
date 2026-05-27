@@ -5,13 +5,9 @@ cc._RF.push(module, '31b56tJWjpPlrcCAXTwiyUM', 'RankingListView');
 "use strict";
 
 var GameConfig = require("GameConfig");
-
 var AnimLayerTool = require("AnimLayerTool");
-
 var GameTools = require("GameTools");
-
 var GameUiTools = require("GameUiTools");
-
 cc.Class({
   "extends": cc.Component,
   // name: "RankingListView",
@@ -24,21 +20,20 @@ cc.Class({
   },
   onLoad: function onLoad() {},
   start: function start() {
-    GameUiTools.setButtonClickEvents(this, this.backButton, "backButtonFunc"); // GameUiTools.setButtonClickEvents(this, this.shareButton, "shareButtonFunc");
-
+    GameUiTools.setButtonClickEvents(this, this.backButton, "backButtonFunc");
+    // GameUiTools.setButtonClickEvents(this, this.shareButton, "shareButtonFunc");
     if (this.shareTicket != null) {
       var shareNode = new cc.Node();
       shareNode.addComponent(cc.Label).string = "群排行";
       shareNode.setPosition(-260, 503);
       this.node.addChild(shareNode);
     }
-
     if (CC_WECHATGAME) {
       if (window.sharedCanvas != undefined) {
         this.tex = new cc.Texture2D();
         window.sharedCanvas.width = 720;
-        window.sharedCanvas.height = 1280; // 发消息给子域
-
+        window.sharedCanvas.height = 1280;
+        // 发消息给子域
         if (this.shareTicket != null) {
           window.wx.postMessage({
             messageType: 5,

@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "@types/facebook-instant-games": "^6.3.2",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "count-time-down": "^1.0.5",
+    "date-fns": "^2.30.0",
+    "eiows": "^4.0.1",
+    "express": "^4.21.2",
+    "fb-instant-games": "^0.0.14",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.3.0",
+    "howler": "^2.2.4",
+    "playfab-sdk": "^2.81.220118",
+    "socket.io-client": "^4.5.0",
+    "socket.io-msgpack-parser": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

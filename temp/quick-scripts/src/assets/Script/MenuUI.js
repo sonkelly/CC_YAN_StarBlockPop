@@ -1,19 +1,14 @@
 "use strict";
-cc._RF.push(module, '5c2b5VzgPNHI4Chk6xcuhIS', 'MenuUI');
+cc._RF.push(module, 'dc0a4JWaxJFIaO1kQkeJ3If', 'MenuUI');
 // Script/MenuUI.js
 
 "use strict";
 
 var GameTools = require("GameTools");
-
 var GameUiTools = require("GameUiTools");
-
 var GameConfig = require("GameConfig");
-
 var GameData = require("GameData");
-
 var AnimLayerTool = require("AnimLayerTool");
-
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -22,27 +17,15 @@ cc.Class({
     musicButton: cc.Node,
     bestScoreLabel: cc.Label,
     gameIntegral: cc.Label,
-    rankButton: cc.Node,
-    //排行榜按钮
-    shareButton: cc.Node,
-    //好友分享按钮
-    shareButton2: cc.Node,
-    //群分享按钮
     helpButton: cc.Node //帮助按钮
-
   },
   onLoad: function onLoad() {
     GameUiTools.setButtonClickEvents(this, this.startGameButton, "startGameButtonFunc");
     GameUiTools.setButtonClickEvents(this, this.musicButton, "musicButtonFunc");
-    GameUiTools.setButtonClickEvents(this, this.rankButton, "rankButtonFunc");
-    GameUiTools.setButtonClickEvents(this, this.shareButton, "shareButtonFunc");
-    GameUiTools.setButtonClickEvents(this, this.shareButton2, "shareButtonFunc");
     GameUiTools.setButtonClickEvents(this, this.helpButton, "helpButtonFunc");
-
     if (!GameConfig.IS_GAME_MUSIC) {
       GameUiTools.getSpriteFrame("pop_main/popmain_78", this.musicButton.getComponent(cc.Sprite));
     }
-
     this.bestScoreLabel.string = GameData.getHeightScore();
     this.gameIntegral.string = GameTools.getGameIntegral();
   },
@@ -53,7 +36,7 @@ cc.Class({
       }
     }
   },
-  startGameButtonFunc: function startGameButtonFunc(event, customEventData) {
+  btnStartAdventureOnClick: function btnStartAdventureOnClick(event, customEventData) {
     GameTools.playSimpleAudioEngine(0);
     this.loadingResource();
   },
@@ -61,25 +44,21 @@ cc.Class({
     GameTools.playSimpleAudioEngine(0);
     GameConfig.IS_GAME_MUSIC = !GameConfig.IS_GAME_MUSIC;
     GameTools.setItemByLocalStorage("IS_GAME_MUSIC", GameConfig.IS_GAME_MUSIC);
-
     if (GameConfig.IS_GAME_MUSIC) {
       GameUiTools.getSpriteFrame("pop_main/popmain_58", this.musicButton.getComponent(cc.Sprite));
     } else {
       GameUiTools.getSpriteFrame("pop_main/popmain_78", this.musicButton.getComponent(cc.Sprite));
     }
   },
-  //特价9.9元一套cocoscreator代码联系Q2483367084 
-  //截图 链接：https://share.weiyun.com/leGAHpnB 密码：b9udtv
-  rankButtonFunc: function rankButtonFunc(event) {
+  btnStartLevelModeOnClick: function btnStartLevelModeOnClick() {},
+  btnSettingOnClick: function btnSettingOnClick() {},
+  btnShopOnClick: function btnShopOnClick() {},
+  btnDailyRewardOnClick: function btnDailyRewardOnClick() {},
+  btnRankOnClick: function btnRankOnClick() {
     GameTools.playSimpleAudioEngine(0);
     GameTools.getRankData();
   },
-  shareButtonFunc: function shareButtonFunc(event) {
-    GameTools.playSimpleAudioEngine(0);
-    setTimeout(function () {
-      GameTools.sharePicture();
-    }, 100);
-  },
+  rankButtonFunc: function rankButtonFunc(event) {},
   helpButtonFunc: function helpButtonFunc(event) {
     GameTools.playSimpleAudioEngine(0);
     GameUiTools.loadingLayer("panel/GameHelp");

@@ -5,9 +5,7 @@ cc._RF.push(module, '6633adSwotPR4cUtDy9WXUH', 'GameUiTools');
 "use strict";
 
 var GameConfig = require("GameConfig");
-
 var GameTools = require("GameTools");
-
 var GameUiTools = {
   getSpriteFrame: function getSpriteFrame(spriteName, curSp) {
     // return new cc.SpriteFrame(cc.url.raw(spriteName));
@@ -17,7 +15,6 @@ var GameUiTools = {
         console.log("DEBUG: err" + err);
         return;
       }
-
       if (curSp) {
         curSp.spriteFrame = spriteFrame;
       }
@@ -25,14 +22,12 @@ var GameUiTools = {
   },
   newSprite: function newSprite(spriteName, isCache) {
     var sprite = new cc.Node();
-
     if (isCache) {
       spriteName = spriteName.split('.')[0];
       sprite.addComponent(cc.Sprite).spriteFrame = GameTools.love2048FrameCache.getSpriteFrame(spriteName);
     } else {
       sprite.addComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame("res/raw-assets/" + spriteName);
     }
-
     return sprite;
   },
   setNodeSpriteFrame: function setNodeSpriteFrame(node, spriteName) {
@@ -40,38 +35,32 @@ var GameUiTools = {
   },
   setButtonClickEvents: function setButtonClickEvents(component, menu, handler, customEventData, isScale) {
     var arrayMenu = new Array();
-
     if (menu.length == undefined) {
       arrayMenu[0] = menu;
     } else {
       arrayMenu = menu;
     }
-
     for (var i = 0; i < arrayMenu.length; i++) {
       var clickEventHandler = new cc.Component.EventHandler();
       clickEventHandler.target = component.node; //这个 node 节点是你的事件处理代码组件所属的节点
-
       clickEventHandler.component = component.node.name; //这个是代码文件名
-
       clickEventHandler.handler = handler;
-
       if (menu.length == undefined) {
         clickEventHandler.customEventData = customEventData;
       } else {
         clickEventHandler.customEventData = i;
       }
-
       var button = arrayMenu[i].addComponent(cc.Button);
       button.clickEvents.push(clickEventHandler);
-
       if (isScale == undefined || isScale) {
         button.transition = cc.Button.Transition.SCALE;
         button.duration = 0.1;
         button.zoomScale = 1.2;
-      } // this.secondSetMenu[i].on('click', this.setMenuTouchFunc, this);
-
+      }
+      // this.secondSetMenu[i].on('click', this.setMenuTouchFunc, this);
     }
   },
+
   setSecondSetMenuSpriteFram: function setSecondSetMenuSpriteFram(secondSetMenu, isRight) {
     //设置是否勾选图片
     secondSetMenu.getChildren()[0].getComponent(cc.Sprite).spriteFrame = GameTools.love2048FrameCache.getSpriteFrame(isRight ? "menuRight" : "menuClose");

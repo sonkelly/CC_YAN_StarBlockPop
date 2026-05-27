@@ -5,13 +5,9 @@ cc._RF.push(module, '14994fnx85J5J1PEYcF4MrT', 'GamePropHelp');
 "use strict";
 
 var GameConfig = require("GameConfig");
-
 var GameTools = require("GameTools");
-
 var GameData = require("GameData");
-
 var GameUiTools = require("GameUiTools");
-
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -22,7 +18,6 @@ cc.Class({
     backButton: cc.Node,
     //返回按钮
     getPropButton: cc.Node //获取按钮
-
   },
   onLoad: function onLoad() {
     GameUiTools.setButtonClickEvents(this, this.backButton, "buttonFunc");
@@ -30,7 +25,6 @@ cc.Class({
   },
   setPropType: function setPropType(propType) {
     this.propTypeNumber = propType;
-
     if (propType == 0) {
       ameUiTools.getSpriteFrame("pop_game/popgame_46", this.title);
       GameUiTools.getSpriteFrame("pop_game/popgame_25", this.propType);
@@ -47,7 +41,6 @@ cc.Class({
   },
   buttonFunc: function buttonFunc(event) {
     var button = event.target;
-
     if (this.backButton == button) {
       GameTools.playSimpleAudioEngine(0);
       this.node.destroy();
@@ -58,7 +51,6 @@ cc.Class({
       GameConfig.GameScene.setGamePropNumber(this.propTypeNumber);
       this.node.destroy();
     }
-
     return true;
   }
 });

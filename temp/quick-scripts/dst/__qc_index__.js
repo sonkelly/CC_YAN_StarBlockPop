@@ -10,6 +10,9 @@
                     };
                     function __define (exports, require, module) {
                         if (!nodeEnv) {__quick_compile_project__.registerModule(__filename, module);}
+require('./assets/Exts/PersistNode');
+require('./assets/Exts/PopupBase');
+require('./assets/Exts/PopupController');
 require('./assets/Script/AnimLayerTool');
 require('./assets/Script/CardSprite');
 require('./assets/Script/GameConfig');
@@ -20,7 +23,9 @@ require('./assets/Script/GameTools');
 require('./assets/Script/GameUiTools');
 require('./assets/Script/LoadingScene');
 require('./assets/Script/MenuUI');
+require('./assets/Script/Ultis/GameDefines');
 require('./assets/Script/assist/AnimInAndOut');
+require('./assets/Script/controller/SettingController');
 require('./assets/Script/panel/GameHelp');
 require('./assets/Script/panel/GameOver');
 require('./assets/Script/panel/GamePass');

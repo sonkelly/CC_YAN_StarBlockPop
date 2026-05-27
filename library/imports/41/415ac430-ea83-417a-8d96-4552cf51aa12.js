@@ -5,7 +5,6 @@ cc._RF.push(module, '415acQw6oNBeo2WRVLPUaoS', 'GameTools');
 "use strict";
 
 var GameConfig = require("GameConfig");
-
 var GameTools = {
   love2048FrameCache: null,
   numberLabelAtlas: null,
@@ -16,19 +15,15 @@ var GameTools = {
         case 0:
           cc.audioEngine.play(cc.url.raw('resources/sounds/pop_star.mp3'), false, 0.5);
           break;
-
         case 1:
           cc.audioEngine.play(cc.url.raw('resources/sounds/select.mp3'), false, 0.5);
           break;
-
         case 2:
           cc.audioEngine.play(cc.url.raw("resources/sounds/landing.mp3"), false, 0.5);
           break;
-
         case 3:
           cc.audioEngine.play(cc.url.raw("resources/sounds/cheers.mp3"), false, 0.5);
           break;
-
         default:
           break;
       }
@@ -49,22 +44,18 @@ var GameTools = {
   },
   getItemByLocalStorage: function getItemByLocalStorage(key, value) {
     var values = cc.sys.localStorage.getItem(key);
-
     if (values === undefined || values === null || values === '') {
       cc.sys.localStorage.setItem(key, value);
       return value;
     }
-
     if (typeof value === 'boolean') {
       if (typeof values === 'boolean') {
         return values;
       }
-
       return "true" == values;
     } else if (typeof value === 'number') {
       return Number(values);
     }
-
     return values;
   },
   setItemByLocalStorage: function setItemByLocalStorage(key, value) {
@@ -75,13 +66,13 @@ var GameTools = {
       if (!err) {
         var node = cc.instantiate(prefab);
         node.getComponent(cc.Component).toastType = toastType;
-        cc.director.getScene().children[0].addChild(node); // cc.director.getScene().getChildByName('Canvas').addChild(node);
+        cc.director.getScene().children[0].addChild(node);
+        // cc.director.getScene().getChildByName('Canvas').addChild(node);
       }
     });
   },
   sharePicture: function sharePicture(pictureName) {
     var titleStr = '来跟我一起挑战浪漫2048吧。';
-
     if ("shareTicket" == pictureName) {
       titleStr = "看看你在群里排第几？来和我挑战浪漫2048吧。";
     } else if ("LotteryLayer" == pictureName) {
@@ -90,7 +81,6 @@ var GameTools = {
     } else if (pictureName != undefined && pictureName != null) {
       titleStr = "我得了" + pictureName + "分," + titleStr;
     }
-
     if (CC_WECHATGAME) {
       window.wx.shareAppMessage({
         title: titleStr,
@@ -134,21 +124,20 @@ var GameTools = {
   },
   checkFirstLoginGame: function checkFirstLoginGame() {
     var _this = this;
-
     //检查是否首次登录
     var loginDate = Math.floor((new Date().getTime() - new Date(2018, 3, 18, 0, 0, 0, 0).getTime()) / (1000 * 60 * 60 * 24));
-
     if (loginDate > this.getItemByLocalStorage("FirstEnterGameDate", 0)) {
       cc.sys.localStorage.setItem("FirstEnterGameDate", loginDate);
       setTimeout(function () {
         _this.setGameIntegral(_this.getGameIntegral() + 100);
-
         _this.toastMessage(9);
       }, 1500);
     }
   },
-  setCardBackPath: function setCardBackPath(num) //设置卡片背景路径
-  {//GameConfig.setCardBackPath(num, "card/nl2048.png");
+  setCardBackPath: function setCardBackPath(num)
+  //设置卡片背景路径
+  {
+    //GameConfig.setCardBackPath(num, "card/nl2048.png");
   },
   userLogin: function userLogin() {//用户登录
   },
@@ -157,12 +146,10 @@ var GameTools = {
     cc.loader.loadRes("panel/RankingListView", function (err, prefab) {
       if (!err) {
         var node = cc.instantiate(prefab);
-
         if (shareTicket != undefined) {
           node.getComponent(cc.Component).shareTicket = shareTicket;
-        } // node.setPosition(cc.p(0, 0));
-
-
+        }
+        // node.setPosition(cc.p(0, 0));
         cc.director.getScene().children[0].addChild(node);
       }
     });
@@ -189,7 +176,8 @@ var GameTools = {
       cc.log("提交得分:" + GameConfig.MAIN_MENU_NUM + " : " + score);
     }
   },
-  getSelectAddNum: function getSelectAddNum(num) //获取叠加数
+  getSelectAddNum: function getSelectAddNum(num)
+  //获取叠加数
   {
     if (num < 4) {
       num = 2;
@@ -226,7 +214,6 @@ var GameTools = {
     } else {
       num = 131072;
     }
-
     return num;
   }
 };

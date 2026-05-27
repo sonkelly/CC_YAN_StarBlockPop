@@ -5,13 +5,9 @@ cc._RF.push(module, '96845POniBJCI0lyGy969Pc', 'GamePass');
 "use strict";
 
 var GameConfig = require("GameConfig");
-
 var GameTools = require("GameTools");
-
 var GameData = require("GameData");
-
 var GameUiTools = require("GameUiTools");
-
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -22,7 +18,6 @@ cc.Class({
     shareButton: cc.Node,
     //分享按钮
     backButton: cc.Node //返回按钮
-
   },
   onLoad: function onLoad() {
     this.passLabel.string = "第  " + GameData.getGamePassNum() + "  关";
@@ -33,7 +28,6 @@ cc.Class({
   },
   buttonFunc: function buttonFunc(event) {
     var button = event.target;
-
     if (this.shareButton == button) {
       GameTools.playSimpleAudioEngine(0);
       GameTools.sharePicture();
@@ -47,7 +41,6 @@ cc.Class({
       GameConfig.GameLogic.saveMemoryInformation();
       this.loadingResource();
     }
-
     return true;
   },
   loadingResource: function loadingResource() {

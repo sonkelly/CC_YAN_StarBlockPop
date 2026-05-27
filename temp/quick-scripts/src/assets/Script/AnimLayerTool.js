@@ -5,13 +5,9 @@ cc._RF.push(module, 'dcf6e/4kv9KYrR4VIQPHtsC', 'AnimLayerTool');
 "use strict";
 
 var CardSprite = require("CardSprite");
-
 var GameConfig = require("GameConfig");
-
 var GameTools = require("GameTools");
-
 var GameUiTools = require("GameUiTools");
-
 var DEVICE_WIDTH = GameConfig.DEVICE_WIDTH;
 var DEVICE_HEIGHT = GameConfig.DEVICE_HEIGHT;
 var MoveButtonAnimType = {
@@ -30,8 +26,8 @@ var MoveButtonAnimType = {
   rightUp: 6,
   //右上
   rightDown: 7 //右下
-
 };
+
 var AnimLayerTool = {
   moveButtonAnimTime: 0.3,
   // 按钮动画移动时间
@@ -39,13 +35,11 @@ var AnimLayerTool = {
   bottonAnim: function bottonAnim(button) {
     // 创建按钮特效
     var arrayNode = new Array();
-
     if (button.length == undefined) {
       arrayNode[0] = button;
     } else {
       arrayNode = button;
     }
-
     for (var i = 0; i < arrayNode.length; i++) {
       // let time = cc.random0To1() * 5 + 1;
       var time = Math.random() * 5 + 1;
@@ -59,11 +53,12 @@ var AnimLayerTool = {
     }
   },
   createShowMessageBox: function createShowMessageBox(x, y, name, rotation, parentNode) {},
-  createShowMessageBoxAward: function createShowMessageBoxAward(parentNode, engineType) //创建奖励消息提示框
+  createShowMessageBoxAward: function createShowMessageBoxAward(parentNode, engineType)
+  //创建奖励消息提示框
   {
     var message = new cc.Node();
-
-    if (engineType == -1) {// message.addComponent(cc.Sprite).spriteFrame = GameTools.love2048FrameCache.getSpriteFrame("toast6");
+    if (engineType == -1) {
+      // message.addComponent(cc.Sprite).spriteFrame = GameTools.love2048FrameCache.getSpriteFrame("toast6");
     } else if (engineType < 6) {
       return;
     } else if (engineType < 8) {
@@ -77,10 +72,9 @@ var AnimLayerTool = {
     } else {
       GameUiTools.getSpriteFrame("pop_nopack/txt_boom", message.addComponent(cc.Sprite));
     }
-
     GameTools.playSimpleAudioEngine(3);
-    message.setPosition(0, 0); // message.setOpacity(0);
-
+    message.setPosition(0, 0);
+    // message.setOpacity(0);
     message.opacity = 0;
     parentNode.addChild(message);
     var action1 = cc.fadeIn(0.5);
@@ -95,114 +89,95 @@ var AnimLayerTool = {
     var positionX = button.x;
     var positionY = button.y;
     var size = button.getContentSize();
-
     if (isShow) {
       switch (moveButtonAnimType) {
         case 0:
           // up:
           button.setPosition(positionX, DEVICE_HEIGHT + size.height);
           break;
-
         case 1:
           // down:
           button.setPosition(positionX, -size.height);
           break;
-
         case 2:
           // left:
           button.setPosition(-size.width, positionY);
           break;
-
         case 3:
           // right:
           button.setPosition(DEVICE_WIDTH + size.width, positionY);
           break;
-
         case 4:
           // leftUp:
           button.setPosition(-size.width, DEVICE_HEIGHT + size.height);
           break;
-
         case 5:
           // leftDown:
           button.setPosition(-size.width, -size.height);
           break;
-
         case 6:
           // rightUp:
           button.setPosition(DEVICE_WIDTH + size.width, DEVICE_HEIGHT + size.height);
           break;
-
         case 7:
           // rightDown:
           button.setPosition(DEVICE_WIDTH + size.width, -size.height);
           break;
-
         default:
           break;
       }
-
       var anim1 = cc.moveTo(this.moveButtonAnimTime, cc.v2(positionX, positionY));
       button.runAction(anim1);
     } else {
       var _anim;
-
       switch (moveButtonAnimType) {
         case 0:
           // up:
           _anim = cc.moveTo(this.moveButtonAnimTime, cc.v2(positionX, DEVICE_HEIGHT + size.height));
           break;
-
         case 1:
           // down:
           _anim = cc.moveTo(this.moveButtonAnimTime, cc.v2(positionX, -size.height));
           break;
-
         case 2:
           // left:
           _anim = cc.moveTo(this.moveButtonAnimTime, cc.v2(-size.width, positionY));
           break;
-
         case 3:
           // right:
           _anim = cc.moveTo(this.moveButtonAnimTime, cc.v2(DEVICE_WIDTH + size.width, positionY));
           break;
-
         case 4:
           // leftUp:
           _anim = cc.moveTo(this.moveButtonAnimTime, cc.v2(-size.width, DEVICE_HEIGHT + size.height));
           break;
-
         case 5:
           // leftDown:
           _anim = cc.moveTo(this.moveButtonAnimTime, cc.v2(-size.width, -size.height));
           break;
-
         case 6:
           // rightUp:
           _anim = cc.moveTo(this.moveButtonAnimTime, cc.v2(DEVICE_WIDTH + size.width, DEVICE_HEIGHT + size.height));
           break;
-
         case 7:
           // rightDown:
           _anim = cc.moveTo(this.moveButtonAnimTime, cc.v2(DEVICE_WIDTH + size.width, -size.height));
           break;
-
         default:
           break;
       }
-
       button.runAction(_anim);
     }
   },
-  createAddScore: function createAddScore(addScore) //创建加分动画
+  createAddScore: function createAddScore(addScore)
+  //创建加分动画
   {
     var addScoreSprite = new cc.Node();
     var lable = addScoreSprite.addComponent(cc.Label);
     lable.font = GameTools.numberLabelAtlas;
     lable.string = ":" + addScore;
-    addScoreSprite.setPosition(-46, 505); // addScoreSprite.setOpacity(100);
-
+    addScoreSprite.setPosition(-46, 505);
+    // addScoreSprite.setOpacity(100);
     addScoreSprite.opacity = 0;
     GameConfig.GameScene.node.addChild(addScoreSprite);
     var move1 = cc.moveBy(0.3, 0, 106);
@@ -211,7 +186,8 @@ var AnimLayerTool = {
     var moveFinish = cc.callFunc(this.callFuncAddScore, this, addScoreSprite);
     addScoreSprite.runAction(cc.sequence(move3, moveFinish));
   },
-  callFuncAddScore: function callFuncAddScore(sender, node) //创建加分动画监听
+  callFuncAddScore: function callFuncAddScore(sender, node)
+  //创建加分动画监听
   {
     sender.destroy();
   },
@@ -226,13 +202,11 @@ var AnimLayerTool = {
       from.getParent().addChild(scoreNumberTTF);
       var moveFinish = cc.callFunc(this.callFuncScoreMoveAnim, this, scoreNumberTTF);
       var move1 = null;
-
       if (scoreType) {
         move1 = cc.moveTo(1, 58 + 360, 408 + 640);
       } else {
         move1 = cc.moveTo(1, -259 + 360, 290 + 640);
       }
-
       move1.easing(cc.easeExponentialIn());
       scoreNumberTTF.runAction(cc.sequence(move1, moveFinish));
     }
@@ -242,7 +216,8 @@ var AnimLayerTool = {
     GameConfig.GameLogic.setScore();
     scoreNumberTTF.destroy();
   },
-  createChangeCardNumAnim: function createChangeCardNumAnim(card, num) //创建移除动画
+  createChangeCardNumAnim: function createChangeCardNumAnim(card, num)
+  //创建移除动画
   {
     var cardSprite = CardSprite.createCardSprite(card.getNumber(), card.getPositionX(), card.getPositionY());
     card.getParent().addChild(cardSprite);
@@ -257,11 +232,13 @@ var AnimLayerTool = {
     var actions = cc.sequence(action2, moveFinish1, action3, moveFinish2);
     cardSprite.runAction(actions);
   },
-  callFuncChangeCardNum1: function callFuncChangeCardNum1(sender, cardSprite) //卡片移除特效监听
+  callFuncChangeCardNum1: function callFuncChangeCardNum1(sender, cardSprite)
+  //卡片移除特效监听
   {
     cardSprite.CardShow();
   },
-  callFuncChangeCardNum2: function callFuncChangeCardNum2(sender, funData) //卡片移除特效监听
+  callFuncChangeCardNum2: function callFuncChangeCardNum2(sender, funData)
+  //卡片移除特效监听
   {
     var cardSprite = funData[0];
     var card = funData[1];
@@ -269,52 +246,47 @@ var AnimLayerTool = {
     card.active = true;
     cardSprite.destroy();
   },
-  createExchangeCardAnim: function createExchangeCardAnim(card, z, x) //创建道具交换特效
+  createExchangeCardAnim: function createExchangeCardAnim(card, z, x)
+  //创建道具交换特效
   {
     var X = card.getPositionX();
     var Y = card.getPositionY();
     var unitSize = GameConfig.CARD_WIDTH / (GameConfig.CAED_LINES + 1);
     var move1 = cc.scaleBy(0.4, 1.15);
     var actions = cc.sequence(move1, move1.reverse());
-
     if (z > 0) {
       var card1 = CardSprite.createCardSprite(-1, X - unitSize - GameConfig.CARD_WIDTH, Y);
       card.getParent().addChild(card1);
       card1.runAction(actions.clone().repeatForever());
     }
-
     if (z < GameConfig.CAED_LINES - 1) {
       var card2 = CardSprite.createCardSprite(-1, X + unitSize + GameConfig.CARD_WIDTH, Y);
       card.getParent().addChild(card2);
       card2.runAction(actions.clone().repeatForever());
     }
-
     if (x > 0) {
       var card3 = CardSprite.createCardSprite(-1, X, Y - unitSize - GameConfig.CARD_WIDTH);
       card.getParent().addChild(card3);
       card3.runAction(actions.clone().repeatForever());
     }
-
     if (x < GameConfig.CAED_LINES - 1) {
       var card4 = CardSprite.createCardSprite(-1, X, Y + unitSize + GameConfig.CARD_WIDTH);
       card.getParent().addChild(card4);
       card4.runAction(actions.clone().repeatForever());
     }
   },
-  createRemoveExchangeCardAnim: function createRemoveExchangeCardAnim(card, z, x) //创建道具移除交换特效
+  createRemoveExchangeCardAnim: function createRemoveExchangeCardAnim(card, z, x)
+  //创建道具移除交换特效
   {
     if (z > 0) {
       card.getParent().removeChildByTag(2001);
     }
-
     if (z < GameConfig.CAED_LINES - 1) {
       card.getParent().removeChildByTag(2002);
     }
-
     if (x > 0) {
       card.getParent().removeChildByTag(2003);
     }
-
     if (x < GameConfig.CAED_LINES - 1) {
       card.getParent().removeChildByTag(2004);
     }
@@ -341,7 +313,6 @@ var AnimLayerTool = {
     var i = 0;
     var moveFinish = cc.callFunc(this.callFuncCard2, this, [cardSprite, to, isShowAnim]);
     var move1 = cc.moveTo(0.3, cc.v2(to.x, to.y));
-
     if (i < 1) {
       move1 = cc.moveTo(0.1, cc.v2(to.x, to.y));
     } else if (i < 2) {
@@ -353,12 +324,10 @@ var AnimLayerTool = {
     } else if (i < 5) {
       move1 = cc.jumpTo(0.3, cc.v2(to.x, to.y), GameConfig.CARD_WIDTH, 2);
     }
-
     cardSprite.runAction(cc.sequence(move1, moveFinish));
   },
   callFuncCard2: function callFuncCard2(sender, to) {
     to[1].CardShow();
-
     if (to[2]) {
       to[0].number = to[1].number;
       to[0].CardShow();
@@ -372,20 +341,22 @@ var AnimLayerTool = {
   callFuncCard3: function callFuncCard3(sender, card) {
     card.destroy();
   },
-  createPopStarAnim: function createPopStarAnim(from, dTime) //创建卡片爆炸特效
+  createPopStarAnim: function createPopStarAnim(from, dTime)
+  //创建卡片爆炸特效
   {
-    var moveFinish2 = cc.callFunc(this.callFuncPopStarAnim, this, from); // from.runAction(cc.sequence(cc.delayTime(dTime), moveFinish2, cc.hide()));
-
+    var moveFinish2 = cc.callFunc(this.callFuncPopStarAnim, this, from);
+    // from.runAction(cc.sequence(cc.delayTime(dTime), moveFinish2, cc.hide()));
     from.runAction(cc.sequence(cc.delayTime(dTime), moveFinish2, cc.fadeOut()));
   },
-  callFuncPopStarAnim: function callFuncPopStarAnim(sender, from) //卡片爆炸特效监听
+  callFuncPopStarAnim: function callFuncPopStarAnim(sender, from)
+  //卡片爆炸特效监听
   {
     GameTools.playSimpleAudioEngine(0);
     var emitterNode = new cc.Node();
     emitterNode.setPosition(from.getPosition());
-    var move_emitter = emitterNode.addComponent(cc.ParticleSystem); // let move_emitter = ParticleExplosion.createWithTotalParticles(30);
+    var move_emitter = emitterNode.addComponent(cc.ParticleSystem);
+    // let move_emitter = ParticleExplosion.createWithTotalParticles(30);
     // let move_emitter = new cc.ParticleSystem(30);
-
     switch (from.getNumber()) {
       // case 2:
       //     move_emitter.texture = "res/raw-assets/resources/particals/noe/partical_tex_yellow";
@@ -405,24 +376,19 @@ var AnimLayerTool = {
       case 2:
         move_emitter.texture = "pop_game/n6";
         break;
-
       case 4:
         move_emitter.texture = "pop_game/n6";
         break;
-
       case 8:
         move_emitter.texture = "pop_game/n6";
         break;
-
       case 16:
         move_emitter.texture = "pop_game/n6";
         break;
-
       case 32:
         move_emitter.texture = "pop_game/n6";
         break;
     }
-
     move_emitter.startColor = cc.color(255, 255, 255, 255);
     move_emitter.startColorVar = cc.color(0, 0, 0, 0);
     move_emitter.endColorVar = cc.color(0, 0, 0, 0);

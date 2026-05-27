@@ -10,8 +10,8 @@ var LoadingSceneType = {
   LoadingSceneEnterGame: 1,
   //进入游戏
   LoadingSceneBackGame: 2 //返回游戏
-
 };
+
 var MainMenu = {
   MainMenuNumClassic: 0,
   // 经典模式
@@ -20,8 +20,8 @@ var MainMenu = {
   MainMenuNumPopStar: 6,
   //消灭星星模式
   MainMenuSpace: 7 //清空
-
 };
+
 var PropsMenu = {
   PropsMenuBackout: 0,
   //撤销功能
@@ -36,8 +36,8 @@ var PropsMenu = {
   PropsMenuRemoveVertical: 5,
   //使卡片竖排消除
   PropsMenuSpace: 6 //清空
-
 };
+
 var GameConfig = {
   GameName: "一起消灭星星",
   GameClubButton: null,
@@ -54,23 +54,28 @@ var GameConfig = {
   // 卡片宽度
   CAED_LINES: 4,
   // 卡片个数
+
   MAIN_MENU_NUM: -1000,
   // 模式类型标识
+
   loadingSceneType: LoadingSceneType.LoadingSceneFirst,
   // 加载界面
   mainMenu: MainMenu.MainMenuSpace,
   // 主选择菜单
+
   propsMenu: PropsMenu.PropsMenuSpace,
   // 道具功能
+
   IS_GAME_MUSIC: true,
   // 游戏音效
+
   IS_GAME_SHARE: false,
   // 游戏分享
   IS_GAME_OVER: false,
   // 游戏是否结束
   IS_GAME_WIN: false //游戏是否胜利
-
 };
+
 module.exports = GameConfig;
 
 cc._RF.pop();

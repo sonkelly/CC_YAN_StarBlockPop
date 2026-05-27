@@ -5,13 +5,9 @@ cc._RF.push(module, 'baa95mizZVN5pOs1SeqB98u', 'GamePropNode');
 "use strict";
 
 var GameConfig = require("GameConfig");
-
 var GameTools = require("GameTools");
-
 var GameData = require("GameData");
-
 var GameUiTools = require("GameUiTools");
-
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -29,7 +25,6 @@ cc.Class({
     } else if (this.propTypeNumber == 2) {
       GameUiTools.getSpriteFrame("pop_game/popgame_30", this.propType);
     }
-
     this.setPropType();
   },
   setPropType: function setPropType() {

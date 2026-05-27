@@ -5,11 +5,8 @@ cc._RF.push(module, '38b70CDgDNDRrOc8pj7+Z2r', 'ShowMessage');
 "use strict";
 
 var GameConfig = require("GameConfig");
-
 var GameTools = require("GameTools");
-
 var GameUiTools = require("GameUiTools");
-
 cc.Class({
   "extends": cc.Component,
   properties: {
@@ -20,7 +17,6 @@ cc.Class({
   },
   start: function start() {
     var toastMessage = null;
-
     if (this.toastType == 0) {
       toastMessage = "欢迎进入浪漫2048";
     } else if (this.toastType == 1) {
@@ -88,14 +84,16 @@ cc.Class({
     } else {
       toastMessage = this.toastType;
     }
+    this.messageLabel.string = toastMessage;
 
-    this.messageLabel.string = toastMessage; // GameUiTools.setButtonClickEvents(this, this.backButton, "backButtonFunc");
+    // GameUiTools.setButtonClickEvents(this, this.backButton, "backButtonFunc");
     // GameUiTools.setButtonClickEvents(this, this.node, "backButtonFunc");
     // if (CC_WECHATGAME) {
     //     this.node.destroy();
     //     wx.showModal({title: "浪漫提示", content: toastMessage,showCancel:false});
     // }
   },
+
   backButtonFunc: function backButtonFunc(event) {
     GameTools.playSimpleAudioEngine(0);
     this.node.destroy();

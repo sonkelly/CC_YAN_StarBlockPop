@@ -5,21 +5,15 @@ cc._RF.push(module, 'fa66dpbqYROFqRT9GK3/WP2', 'LoadingScene');
 "use strict";
 
 var GameData = require("GameData");
-
 var GameTools = require("GameTools");
-
 var GameUiTools = require("GameUiTools");
-
 var GameConfig = require("GameConfig");
-
 var AnimLayerTool = require("AnimLayerTool");
-
 cc.Class({
   "extends": cc.Component,
   properties: {},
   start: function start() {
     var _this = this;
-
     setTimeout(function () {
       _this.loadingResource();
     }, 10);
@@ -34,7 +28,6 @@ cc.Class({
       GameConfig.IS_GAME_OVER = false;
       GameData.initData();
       GameData.heightScore = GameData.getHeightScore();
-
       if (GameData.isHaveGameData()) {
         if (GameData.loadGameData(true) || GameData.heightScore < 0 || GameData.heightScore > 1073741824) {
           GameData.setHaveGameData(false);
@@ -45,8 +38,8 @@ cc.Class({
     } else if (GameConfig.loadingSceneType == GameConfig.LoadingSceneType.LoadingSceneBackGame) {
       if (!GameConfig.IS_GAME_OVER) {
         GameData.loadGameData(false);
-      } // GameData.destroyInstance();
-
+      }
+      // GameData.destroyInstance();
     }
 
     if (GameConfig.loadingSceneType == GameConfig.LoadingSceneType.LoadingSceneFirst) {
@@ -109,11 +102,9 @@ cc.Class({
         };
       });
       var LaunchOption = wx.getLaunchOptionsSync();
-
       if (LaunchOption.query != {} && LaunchOption.query.x != undefined) {
         GameConfig.MAIN_MENU_NUM = Number(LaunchOption.query.x);
       }
-
       var info = window.wx.getSystemInfoSync();
       GameConfig.GameClubButton = window.wx.createGameClubButton({
         icon: 'green',
@@ -125,7 +116,8 @@ cc.Class({
         }
       });
       GameConfig.GameClubButton.hide();
-    } else {// GameTools.getRankData("测试群排行");
+    } else {
+      // GameTools.getRankData("测试群排行");
     }
   }
 });

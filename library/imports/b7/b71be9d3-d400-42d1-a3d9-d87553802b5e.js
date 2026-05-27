@@ -5,17 +5,11 @@ cc._RF.push(module, 'b71benT1ABC0aPZ2HVTgCte', 'GameScene');
 "use strict";
 
 var GamePopStar = require("GamePopStar");
-
 var GameData = require("GameData");
-
 var GameTools = require("GameTools");
-
 var GameUiTools = require("GameUiTools");
-
 var GameConfig = require("GameConfig");
-
 var AnimLayerTool = require("AnimLayerTool");
-
 var GameScene = cc.Class({
   "extends": cc.Component,
   properties: {
@@ -32,10 +26,12 @@ var GameScene = cc.Class({
     //关数
     propMenu: [cc.Node],
     //道具按钮
+
     currentScore: 0,
     //当前得分
     isAddScore: false,
     //是否加分
+
     gameLogicLayer: cc.Node
   },
   ctor: function ctor() {
@@ -60,7 +56,6 @@ var GameScene = cc.Class({
   functionMenuTouchFunc: function functionMenuTouchFunc(event) {
     GameTools.playSimpleAudioEngine(0);
     var button = event.target;
-
     if (this.propMenu[0] == button) {
       if (GameData.getGamePropNumber(0) >= 1) {
         GameConfig.propsMenu = GameConfig.PropsMenu.PropsMenuDestroyCard;
@@ -103,13 +98,10 @@ var GameScene = cc.Class({
     } else {
       this.isAddScore = true;
     }
-
     if (score > GameData.heightScore) {
       GameData.heightScore = score;
     }
-
     this.progressBar.scaleX = score / GameData.getGamePassScore() * 0.8;
-
     if (this.progressBar.scaleX > 0.9) {
       this.progressBar.scaleX = 0.9;
     }
@@ -132,7 +124,6 @@ var GameScene = cc.Class({
     cc.director.loadScene("LoadingScene");
   } //特价9.9元一套cocoscreator代码联系Q2483367084 
   //截图 链接：https://share.weiyun.com/leGAHpnB 密码：b9udtv
-
 });
 
 cc._RF.pop();

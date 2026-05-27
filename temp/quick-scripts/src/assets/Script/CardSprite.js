@@ -5,11 +5,8 @@ cc._RF.push(module, 'a4ef50jralNeI7oo4DmKqQv', 'CardSprite');
 "use strict";
 
 var GameConfig = require("GameConfig");
-
 var GameTools = require("GameTools");
-
 var GameUiTools = require("GameUiTools");
-
 var CardSprite = cc.Class({
   "extends": cc.Node,
   properties: {
@@ -19,8 +16,8 @@ var CardSprite = cc.Class({
     isSelect: false,
     //记录是否选中
     isFirstSelect: false //记录是否为第一次选中
-
   },
+
   ctor: function ctor() {
     this.cardSprite = this.addComponent(cc.Sprite);
   },
@@ -28,13 +25,14 @@ var CardSprite = cc.Class({
   //截图 链接：https://share.weiyun.com/leGAHpnB 密码：b9udtv
   statics: {
     createCardSprite: function createCardSprite(numbers, CardSpriteX, CardSpriteY) {
-      var cardSprite = new CardSprite(); // 自定义初始化
-
+      var cardSprite = new CardSprite();
+      // 自定义初始化
       cardSprite.initCard(numbers, CardSpriteX, CardSpriteY);
       return cardSprite;
     }
   },
-  initCard: function initCard(numbers, CardSpriteX, CardSpriteY) // 初始化
+  initCard: function initCard(numbers, CardSpriteX, CardSpriteY)
+  // 初始化
   {
     // 初始化数字
     this.number = numbers;
@@ -64,7 +62,6 @@ var CardSprite = cc.Class({
   getNumber: function getNumber() {
     return this.number;
   },
-
   /*
   *创建点击特效
   *ClickType 0移除特效 1点击动画特效 2点击静态特效
@@ -84,7 +81,6 @@ var CardSprite = cc.Class({
       var scale = this.getContentSize().height / w;
       effects.setScale(scale);
       this.addChild(effects);
-
       if (ClickType == 1) {
         this.isFirstSelect = true;
         var move1 = cc.scaleBy(0.4, 1.15);

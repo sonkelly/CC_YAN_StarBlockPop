@@ -1,6 +1,7 @@
 {
-  "ver": "2.3.5",
+  "ver": "2.3.7",
   "uuid": "6adf37a4-d411-4b89-9221-fd77a25700eb",
+  "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -12,8 +13,9 @@
   "platformSettings": {},
   "subMetas": {
     "popgame_30": {
-      "ver": "1.0.4",
+      "ver": "1.0.6",
       "uuid": "daa52668-afaa-40b2-a51a-4629ea7a032f",
+      "importer": "sprite-frame",
       "rawTextureUuid": "6adf37a4-d411-4b89-9221-fd77a25700eb",
       "trimType": "auto",
       "trimThreshold": 1,
