@@ -7,12 +7,12 @@ var GameData = {
     scoreCard3: [], //记录第三次位置
     score0: 0, // 记录当前得分
     score1: 0, // 记录第一次得分
-    score2: 0,// 记录第二次得分
-    score3: 0,// 记录第三次得分
+    score2: 0, // 记录第二次得分
+    score3: 0, // 记录第三次得分
     heightScore: 0, // 最高分
     bestNum: 2, //最大数字
 
-    initData: function () {
+    initData: function() {
         this.scoreCard0 = new Array();
         this.scoreCard1 = new Array();
         this.scoreCard2 = new Array();
@@ -25,84 +25,78 @@ var GameData = {
         }
         this.score0 = 0; // 记录当前得分
         this.score1 = 0; // 记录第一次得分
-        this.score2 = 0;// 记录第二次得分
-        this.score3 = 0;// 记录第三次得分
+        this.score2 = 0; // 记录第二次得分
+        this.score3 = 0; // 记录第三次得分
         this.heightScore = 0; // 最高分
         this.bestNum = 2; //最大数字
     },
-    getChallengeLevelNum: function () {
+    getChallengeLevelNum: function() {
         return 7;
     },
-    getChallengeLevelData: function (type) {
+    getChallengeLevelData: function(type) {
         if (type == 0) {
             return "1000100000001000000010001";
-        }
-        else if (type == 1) {
+        } else if (type == 1) {
             return "1101110001000001000111011";
-        }
-        else if (type == 2) {
+        } else if (type == 2) {
             return "1100100001001001000010011";
-        }
-        else if (type == 3) {
+        } else if (type == 3) {
             return "0111000100000000010001110";
-        }
-        else if (type == 4) {
+        } else if (type == 4) {
             return "0001100001100011000011000";
-        }
-        else if (type == 5) {
+        } else if (type == 5) {
             return "0000000100011100010000000";
-        }
-        else if (type == 6) {
+        } else if (type == 6) {
             return "1000101010000000101010001";
         }
     },
-    getGameData: function (cardNum, cardX, cardY) {
+    getGameData: function(cardNum, cardX, cardY) {
         return GameTools.getItemByLocalStorage("gameData_" + GameConfig.MAIN_MENU_NUM + "_" + cardNum + "_" + cardX + "_" + cardY, 0);
     },
 
-    setGameData: function (gameData, cardNum, cardX, cardY) {
+    setGameData: function(gameData, cardNum, cardX, cardY) {
         cc.sys.localStorage.setItem("gameData_" + GameConfig.MAIN_MENU_NUM + "_" + cardNum + "_" + cardX + "_" + cardY, gameData);
     },
 
-    getGameScoreData: function (scoreNum) {
+    getGameScoreData: function(scoreNum) {
         return GameTools.getItemByLocalStorage("score_" + GameConfig.MAIN_MENU_NUM + "_" + scoreNum, 0);
     },
 
-    setGameScoreData: function (score, scoreNum) {
+    setGameScoreData: function(score, scoreNum) {
         cc.sys.localStorage.setItem("score_" + GameConfig.MAIN_MENU_NUM + "_" + scoreNum, score);
     },
 
-    isHaveGameData: function () {
+    isHaveGameData: function() {
         return GameTools.getItemByLocalStorage("isHaveGameData_" + GameConfig.MAIN_MENU_NUM, false);
     },
 
-    setHaveGameData: function (isHaveGameData) {
+    setHaveGameData: function(isHaveGameData) {
         cc.sys.localStorage.setItem("isHaveGameData_" + GameConfig.MAIN_MENU_NUM, isHaveGameData);
     },
 
-    getScoreNum: function () {
+    getScoreNum: function() {
         return GameTools.getItemByLocalStorage("ScoreNum_" + GameConfig.MAIN_MENU_NUM, 0);
     },
 
-    setScoreNum: function (ScoreNum) {
+    setScoreNum: function(ScoreNum) {
         cc.sys.localStorage.setItem("ScoreNum_" + GameConfig.MAIN_MENU_NUM, ScoreNum);
     },
-    getHeightScore: function () {
+    getHeightScore: function() {
         return GameTools.getItemByLocalStorage("BestScoreNum_" + GameConfig.MAIN_MENU_NUM, 0);
     },
 
-    setHeightScore: function (heightScore) {
+    setHeightScore: function(heightScore) {
         cc.sys.localStorage.setItem("BestScoreNum_" + GameConfig.MAIN_MENU_NUM, heightScore);
     },
-    getIsRecordHeightNum: function (heightNum) {
+    getIsRecordHeightNum: function(heightNum) {
         return GameTools.getItemByLocalStorage("isRecordHeightNum_" + GameConfig.MAIN_MENU_NUM + "_" + heightNum, false);
     },
 
-    setIsRecordHeightNum: function (heightNum, isRecord) {
+    setIsRecordHeightNum: function(heightNum, isRecord) {
         cc.sys.localStorage.setItem("isRecordHeightNum_" + GameConfig.MAIN_MENU_NUM + "_" + heightNum, isRecord);
     },
 
-    setGameRewards: function (num) { //设置游戏奖励
+    setGameRewards: function(num) { //设置游戏奖励
         if ((num >= 1024) && !this.getIsRecordHeightNum(num)) {
             GameTools.playSimpleAudioEngine(3);
             this.setIsRecordHeightNum(num, true);
@@ -117,72 +111,63 @@ var GameData = {
             case 256:
                 if (GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPop && GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPopStar) {
                     gameIntergralNum = 5 - GameConfig.CAED_LINES;
-                }
-                else {
+                } else {
                     gameIntergralNum = 1;
                 }
                 break;
             case 512:
                 if (GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPop && GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPopStar) {
                     gameIntergralNum = 6 - GameConfig.CAED_LINES;
-                }
-                else {
+                } else {
                     gameIntergralNum = 2;
                 }
                 break;
             case 1024:
                 if (GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPop && GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPopStar) {
                     gameIntergralNum = 7 - GameConfig.CAED_LINES;
-                }
-                else {
+                } else {
                     gameIntergralNum = 3;
                 }
                 break;
             case 2048:
                 if (GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPop && GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPopStar) {
                     gameIntergralNum = 8 - GameConfig.CAED_LINES;
-                }
-                else {
+                } else {
                     gameIntergralNum = 4;
                 }
                 break;
             case 4096:
                 if (GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPop && GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPopStar) {
                     gameIntergralNum = 9 - GameConfig.CAED_LINES;
-                }
-                else {
+                } else {
                     gameIntergralNum = 5;
                 }
                 break;
             case 8192:
                 if (GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPop && GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPopStar) {
                     gameIntergralNum = 10 - GameConfig.CAED_LINES;
-                }
-                else {
+                } else {
                     gameIntergralNum = 6;
                 }
                 break;
             case 16384:
                 if (GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPop && GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPopStar) {
                     gameIntergralNum = 11 - GameConfig.CAED_LINES;
-                }
-                else {
+                } else {
                     gameIntergralNum = 7;
                 }
                 break;
             case 65536:
                 if (GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPop && GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPopStar) {
                     gameIntergralNum = 12 - GameConfig.CAED_LINES;
-                }
-                else {
+                } else {
                     gameIntergralNum = 8;
                 }
                 break;
             case 131072:
                 if (GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPop && GameConfig.mainMenu != GameConfig.MainMenu.MainMenuNumPopStar) {
                     gameIntergralNum = 13 - GameConfig.CAED_LINES;
-                }
-                else {
+                } else {
                     gameIntergralNum = 9;
                 }
                 break;
@@ -203,31 +188,31 @@ var GameData = {
         GameTools.setItemByLocalStorage("gameProp" + propType, GameTools.getItemByLocalStorage("gameProp" + propType, 0) + number);
     },
 
-    getGameIntegral: function () //获取积分
-    {
-        return GameTools.getGameIntegral();
-    },
-    setGameIntegral: function (letrgral) {
+    getGameIntegral: function() //获取积分
+        {
+            return GameTools.getGameIntegral();
+        },
+    setGameIntegral: function(letrgral) {
         GameTools.setGameIntegral(this.getGameIntegral() + letrgral);
     },
-    isGameHelp: function () { //判断游戏是否进行了帮助
+    isGameHelp: function() { //判断游戏是否进行了帮助
         return GameTools.getItemByLocalStorage("isGameHelp" + GameConfig.mainMenu, false);
     },
-    setGameHelp: function (gameHelp) {
+    setGameHelp: function(gameHelp) {
         cc.sys.localStorage.setItem("isGameHelp" + GameConfig.mainMenu, gameHelp);
     },
-    getGamePassNum: function () {
+    getGamePassNum: function() {
         return GameTools.getItemByLocalStorage("passNum" + GameConfig.mainMenu, 1);
     },
-    setGamePassNum: function (passNum) {
+    setGamePassNum: function(passNum) {
         cc.sys.localStorage.setItem("passNum" + GameConfig.mainMenu, passNum);
     },
-    getGamePassScore: function () {
+    getGamePassScore: function() {
         let passNum = GameData.getGamePassNum();
         return (1000 + (passNum - 1) * 1500 + (passNum - 1) * (passNum - 1) * 500);
     },
 
-    loadGameData: function (isLoad) {
+    loadGameData: function(isLoad) {
         if (isLoad) {
             for (let i = 0; i < GameConfig.CAED_LINES; i++) {
                 for (let j = 0; j < GameConfig.CAED_LINES; j++) {
@@ -266,7 +251,7 @@ var GameData = {
         }
         return false;
     },
-    checkGameData: function (gameData) {
+    checkGameData: function(gameData) {
         if (gameData == 0) {
             return false;
         }

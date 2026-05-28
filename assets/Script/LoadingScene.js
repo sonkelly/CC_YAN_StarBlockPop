@@ -1,11 +1,14 @@
 var GameData = require("GameData");
 var GameTools = require("GameTools");
-var GameUiTools = require("GameUiTools");
 var GameConfig = require("GameConfig");
-var AnimLayerTool = require("AnimLayerTool");
+const { default: GameDefines } = require("./Ultis/GameDefines");
 cc.Class({
     extends: cc.Component,
-    properties: {},
+    properties: {
+        Platform: GamePlatform = GameDefines.GamePlatform.YANDEX,
+    },
+
+
 
     start() {
         setTimeout(() => {
@@ -31,36 +34,34 @@ cc.Class({
                 }
             }
         } else if (GameConfig.loadingSceneType == GameConfig.LoadingSceneType.LoadingSceneBackGame) {
-            if(!GameConfig.IS_GAME_OVER){
+            if (!GameConfig.IS_GAME_OVER) {
                 GameData.loadGameData(false);
             }
             // GameData.destroyInstance();
         }
 
         if (GameConfig.loadingSceneType == GameConfig.LoadingSceneType.LoadingSceneFirst) {
-            cc.director.preloadScene("MenuUI", function () {
+            cc.director.preloadScene("MenuUI", function() {
                 cc.director.loadScene("MenuUI");
             });
-        }
-        else if (GameConfig.loadingSceneType == GameConfig.LoadingSceneType.LoadingSceneEnterGame) {
-            cc.director.preloadScene("GameScene", function () {
+        } else if (GameConfig.loadingSceneType == GameConfig.LoadingSceneType.LoadingSceneEnterGame) {
+            cc.director.preloadScene("GameScene", function() {
                 cc.director.loadScene("GameScene");
             });
-        }
-        else if (GameConfig.loadingSceneType == GameConfig.LoadingSceneType.LoadingSceneBackGame) {
-            cc.director.preloadScene("MenuUI", function () {
+        } else if (GameConfig.loadingSceneType == GameConfig.LoadingSceneType.LoadingSceneBackGame) {
+            cc.director.preloadScene("MenuUI", function() {
                 cc.director.loadScene("MenuUI");
             });
         }
     },
-    initFrameCache: function () {
-        cc.loader.loadRes("number", cc.LabelAtlas, function (err, atlas) {
+    initFrameCache: function() {
+        cc.loader.loadRes("number", cc.LabelAtlas, function(err, atlas) {
             GameTools.numberLabelAtlas = atlas;
         });
     },
-    initWxSetting: function () {
+    initWxSetting: function() {
         if (CC_WECHATGAME) {
-            window.wx.onHide(function () {//监听小游戏隐藏到后台事件
+            window.wx.onHide(function() { //监听小游戏隐藏到后台事件
                 if (GameConfig.loadingSceneType == GameConfig.LoadingSceneType.LoadingSceneEnterGame && !GameConfig.IS_GAME_OVER) {
                     GameData.loadGameData(false);
                     GameTools.stopBackgroundMusic();
@@ -76,15 +77,15 @@ cc.Class({
             window.wx.onAudioInterruptionBegin(() => {
                 GameTools.stopBackgroundMusic();
             });
-            window.wx.onAudioInterruptionEnd(() => {//监听音频中断结束
+            window.wx.onAudioInterruptionEnd(() => { //监听音频中断结束
                 if (GameConfig.loadingSceneType == GameConfig.LoadingSceneType.LoadingSceneEnterGame && !GameConfig.IS_GAME_OVER) {
                     if (GameConfig.IS_GAME_MUSIC) {
                         GameTools.playBackgroundMusic();
                     }
                 }
             });
-            window.wx.showShareMenu({withShareTicket: true});
-            window.wx.onShareAppMessage(function () {
+            window.wx.showShareMenu({ withShareTicket: true });
+            window.wx.onShareAppMessage(function() {
                 // 用户点击了“转发”按钮
                 return {
                     title: '来跟我一起挑战浪漫2048。',

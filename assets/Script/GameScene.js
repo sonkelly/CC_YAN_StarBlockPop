@@ -9,22 +9,22 @@ var GameScene = cc.Class({
     properties: {
         layerBack: cc.Sprite,
         backButton: cc.Node, //返回按钮
-        cardNumberTTF: cc.Label,// 显示分数控件
-        bestScoreTTF: cc.Label,// 显示最高分数控件
-        progressBar: cc.Node,//进度条
-        passNumTTF: cc.Label,//关数
-        propMenu: [cc.Node],//道具按钮
+        cardNumberTTF: cc.Label, // 显示分数控件
+        bestScoreTTF: cc.Label, // 显示最高分数控件
+        progressBar: cc.Node, //进度条
+        passNumTTF: cc.Label, //关数
+        propMenu: [cc.Node], //道具按钮
 
-        currentScore: 0,//当前得分
-        isAddScore: false,//是否加分
+        currentScore: 0, //当前得分
+        isAddScore: false, //是否加分
 
         gameLogicLayer: cc.Node,
     },
-    ctor: function () {
+    ctor: function() {
         GameConfig.GameScene = this;
-        GameTools.playBackgroundMusic();
+        // GameTools.playBackgroundMusic();
     },
-    onLoad: function () {
+    onLoad: function() {
         GameConfig.GameLogic = new GamePopStar();
         this.gameLogicLayer.addChild(GameConfig.GameLogic);
 
@@ -35,14 +35,13 @@ var GameScene = cc.Class({
         GameUiTools.setButtonClickEvents(this, this.backButton, "backButtonFunc");
         GameUiTools.setButtonClickEvents(this, this.propMenu, "functionMenuTouchFunc");
     },
-    start() {
-    },
-    backButtonFunc: function (event) {
-        GameTools.playSimpleAudioEngine(0);
+    start() {},
+    backButtonFunc: function(event) {
+        // GameTools.playSimpleAudioEngine(0);
         this.loadingResource();
     },
-    functionMenuTouchFunc: function (event) {
-        GameTools.playSimpleAudioEngine(0);
+    functionMenuTouchFunc: function(event) {
+        // GameTools.playSimpleAudioEngine(0);
         let button = event.target;
         if (this.propMenu[0] == button) {
             if (GameData.getGamePropNumber(0) >= 1) {
@@ -79,7 +78,7 @@ var GameScene = cc.Class({
     setGamePropNumber(propType) {
         this.propMenu[propType].getComponent("GamePropNode").setPropType();
     },
-    setScore: function (score) {
+    setScore: function(score) {
         if (this.currentScore > score) {
             this.currentScore = score;
             this.cardNumberTTF.string = this.currentScore;
@@ -95,7 +94,7 @@ var GameScene = cc.Class({
             this.progressBar.scaleX = 0.9;
         }
     },
-    update: function (dt) {
+    update: function(dt) {
         if (this.isAddScore && this.currentScore <= GameData.score0) {
             this.cardNumberTTF.string = this.currentScore++;
             this.currentScore++;
@@ -107,10 +106,10 @@ var GameScene = cc.Class({
         this.passNumTTF.string = "第 " + GameData.getGamePassNum() + " 关";
         this.bestScoreTTF.string = GameData.getGamePassScore();
     },
-    loadingResource: function () {
-        GameTools.stopBackgroundMusic();
+    loadingResource: function() {
+        // GameTools.stopBackgroundMusic();
         GameConfig.loadingSceneType = GameConfig.LoadingSceneType.LoadingSceneBackGame;
         cc.director.loadScene("LoadingScene");
-    },//特价9.9元一套cocoscreator代码联系Q2483367084 
-//截图 链接：https://share.weiyun.com/leGAHpnB 密码：b9udtv
+    }, //特价9.9元一套cocoscreator代码联系Q2483367084 
+    //截图 链接：https://share.weiyun.com/leGAHpnB 密码：b9udtv
 });

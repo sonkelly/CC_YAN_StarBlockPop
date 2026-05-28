@@ -2424,12 +2424,24 @@
       "__id__": 5
     },
     "_enabled": true,
-    "layerBack": null,
-    "startGameButton": null,
-    "musicButton": null,
-    "bestScoreLabel": null,
-    "gameIntegral": null,
-    "helpButton": null,
+    "layerBack": {
+      "__id__": 6
+    },
+    "startGameButton": {
+      "__id__": 18
+    },
+    "musicButton": {
+      "__id__": 37
+    },
+    "bestScoreLabel": {
+      "__id__": 48
+    },
+    "gameIntegral": {
+      "__id__": 34
+    },
+    "helpButton": {
+      "__id__": 41
+    },
     "_id": "f3oYBaRItAy4e+XgB11I2e"
   },
   {
